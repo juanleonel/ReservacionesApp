@@ -10,6 +10,7 @@ namespace ReservacionesApp.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Motociclista> Motociclista { get; set; }
+        public DbSet<Servicio> Servicio { get; set; }
          
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,7 +24,14 @@ namespace ReservacionesApp.Data
         {
             base.OnModelCreating(builder);
 
-           
+            // configures one-to-many relationship 
+
+            //builder.Entity<Motociclista>()
+            //    .HasOne(x => x.servicio)
+            //    .WithMany(y => y.Motociclistas)
+            //    .HasForeignKey(x => x.ServicioId)
+            //    .HasPrincipalKey(x => x.ServicioId)
+            //    .IsRequired();
         }
          
     }

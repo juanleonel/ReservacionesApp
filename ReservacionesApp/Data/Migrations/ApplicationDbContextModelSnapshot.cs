@@ -223,7 +223,7 @@ namespace ReservacionesApp.Data.Migrations
 
             modelBuilder.Entity("ReservacionesApp.Entities.Motociclista", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MotociclistaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -239,9 +239,31 @@ namespace ReservacionesApp.Data.Migrations
                     b.Property<bool>("Ocupado")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("MotociclistaId");
 
                     b.ToTable("Motociclista");
+                });
+
+            modelBuilder.Entity("ReservacionesApp.Entities.Servicio", b =>
+                {
+                    b.Property<int>("ServicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("MotociclistaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ServicioId");
+
+                    b.HasIndex("MotociclistaId")
+                        .IsUnique()
+                        .HasFilter("[MotociclistaId] IS NOT NULL");
+
+                    b.ToTable("Servicio");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -293,6 +315,13 @@ namespace ReservacionesApp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ReservacionesApp.Entities.Servicio", b =>
+                {
+                    b.HasOne("ReservacionesApp.Entities.Motociclista", "Motociclista")
+                        .WithOne("servicio")
+                        .HasForeignKey("ReservacionesApp.Entities.Servicio", "MotociclistaId");
                 });
 #pragma warning restore 612, 618
         }

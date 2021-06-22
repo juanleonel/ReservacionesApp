@@ -6,15 +6,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using ReservacionesApp.Entities;
+using ReservacionesApp.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace ReservacionesApp.Controllers
 {
     public class ServicioController : Controller
     {
-        
+        private readonly IServicio _servicio;
+        private readonly ILogger<ServicioController> _logger;
+        public ServicioController(IServicio servicio)
+        {
+            _servicio = servicio;
+        }
+
         // GET: Servicio
         public ActionResult Index()
-        { 
+        {
+            var servicios = _servicio.GetALL().ToList();
             return View();
         }
 

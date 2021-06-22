@@ -10,7 +10,7 @@ namespace ReservacionesApp.Entities
     public class Motociclista
     {
         [Key]
-        public int Id { get; set; }
+        public int MotociclistaId { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -19,5 +19,6 @@ namespace ReservacionesApp.Entities
         [Column(TypeName = "datetime")]
         public DateTime FechaAlta { get; set; }
         public bool Ocupado { get; set; }
+        public Servicio servicio { get; set; } 
     }
 }
