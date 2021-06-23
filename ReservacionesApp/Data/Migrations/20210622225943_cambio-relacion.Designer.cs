@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservacionesApp.Data;
 
 namespace ReservacionesApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210622225943_cambio-relacion")]
+    partial class cambiorelacion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,35 +264,9 @@ namespace ReservacionesApp.Data.Migrations
                     b.Property<Guid>("Identificador")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ServicioAsignadoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ServicioAsignadoId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Total")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ServicioId");
 
-                    b.HasIndex("ServicioAsignadoId1");
-
                     b.ToTable("Servicio");
-                });
-
-            modelBuilder.Entity("ReservacionesApp.Entities.ServicioAsignado", b =>
-                {
-                    b.Property<int>("ServicioAsignadoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("ServicioAsignadoId");
-
-                    b.ToTable("ServicioAsignado");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -351,13 +327,6 @@ namespace ReservacionesApp.Data.Migrations
                         .HasForeignKey("ServicioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ReservacionesApp.Entities.Servicio", b =>
-                {
-                    b.HasOne("ReservacionesApp.Entities.ServicioAsignado", "servicio")
-                        .WithMany("Servicios")
-                        .HasForeignKey("ServicioAsignadoId1");
                 });
 #pragma warning restore 612, 618
         }

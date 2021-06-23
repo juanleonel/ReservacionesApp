@@ -33,6 +33,34 @@ namespace ReservacionesApp.DataAccess
             }           
         }
 
+        public bool Aplica(Servicio servicio)
+        {
+            try
+            {
+                using (var _context = new ApplicationDbContext())
+                {
+                    using (var transact = _context.Database.BeginTransaction())
+                    {
+
+                        _context.Servicio.Add(new Servicio { 
+                            FechaAlta = DateTime.Now,
+                            Identificador = Guid.NewGuid(),
+                            
+                        });
+
+                        _context.SaveChanges();
+                        transact.Commit();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            throw new NotImplementedException();
+        }
+
         public Servicio Edit(Servicio entity)
         {
             try

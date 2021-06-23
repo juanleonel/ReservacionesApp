@@ -8,6 +8,6 @@ namespace ReservacionesApp.Interfaces
 {
     public interface IServicio : ICrud<Servicio>
     {
-
+        bool Aplica(Servicio servicio);
     }
 }

@@ -11,11 +11,11 @@ namespace ReservacionesApp.Data
     {
         public DbSet<Motociclista> Motociclista { get; set; }
         public DbSet<Servicio> Servicio { get; set; }
-         
+
+        public ApplicationDbContext() { }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
-            
+        { 
         }
 
         
@@ -23,7 +23,7 @@ namespace ReservacionesApp.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            
             // configures one-to-many relationship 
 
             //builder.Entity<Motociclista>()

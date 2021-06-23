@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ReservacionesApp.Models.ServicioViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,31 @@
 
 <h1>Servicios</h1>
 
+<div class="container">
+   
+
+    @foreach (var item in Model)
+    {
+        <div class="row" style="margin-bottom: 5px; margin-top: 5px;">
+            <div class="col-12" style="background:#d2cece;" onclick="selecciona(this);" data-id="@item.Identificador">
+                <p class="text-center">
+                    <span class="hora">@item.Hora </span> <span class="motociclista">@item.Leyenda</span>  <span class="disponibles">@item.TotalMotociclistas</span>
+                </p>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts{
+
+    <script>
+        window.onload = function () {
+             
+        }
+
+        function selecciona(t) {
+            
+            console.log(t);
+        }
+    </script>
+}

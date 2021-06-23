@@ -11,12 +11,16 @@ namespace ReservacionesApp.Entities
     {
         [Key]
         public int ServicioId { get; set; }
-          
+        public Guid Identificador { get; set; }
+
         [Column(TypeName = "datetime")]
         public DateTime FechaAlta { get; set; }
+        public Guid UsuarioId { get; set; }
+        public int Total { get; set; }
 
-        [ForeignKey("MotociclistaId")]
-        public int? MotociclistaId { get; set; }
-        public Motociclista Motociclista { get; set; }         
+        [ForeignKey("ServicioAsignadoId")]
+        public int ServicioAsignadoId { get; set; }
+        public ServicioAsignado servicioAsignado { get; set; }
+        public ICollection<Motociclista> Motociclistas { get; set; }         
     }
 }

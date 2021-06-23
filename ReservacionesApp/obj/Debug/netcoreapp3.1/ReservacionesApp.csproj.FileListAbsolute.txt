@@ -195,7 +195,6 @@ C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcor
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\staticwebassets\ReservacionesApp.StaticWebAssets.xml
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.dll
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.pdb
-C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.csprojAssemblyReference.cache
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\Razor\Views\Servicio\Index.cshtml.g.cs
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll

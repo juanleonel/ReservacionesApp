@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using ReservacionesApp.Entities;
 using ReservacionesApp.Interfaces;
 using Microsoft.Extensions.Logging;
+using ReservacionesApp.Models;
 
 namespace ReservacionesApp.Controllers
 {
@@ -23,83 +24,42 @@ namespace ReservacionesApp.Controllers
         // GET: Servicio
         public ActionResult Index()
         {
-            var servicios = _servicio.GetALL().ToList();
-            return View();
+            //var servicios = _servicio.GetALL().ToList();
+
+            DateTime startTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 08, 00, 00, DateTimeKind.Local);
+            var endTime = startTime.AddHours(12);
+
+            List<ServicioViewModel> servicioViewModel = new List<ServicioViewModel>();
+            while (startTime <= endTime)
+            {
+                servicioViewModel.Add(new ServicioViewModel() { 
+                    Hora = startTime.ToString("HH:mm"),
+                    Identificador = Guid.NewGuid(),
+                    Leyenda = "Motociclistas",
+                    TotalMotociclistas = 8
+                });
+                startTime = startTime.AddMinutes(30);
+            }
+
+            return View(servicioViewModel);
         }
 
-        // GET: Servicio/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Servicio/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Servicio/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
+        public ActionResult Aplicado([FromBody] ServicioSelecViewModel model) {
+
             try
             {
-                // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                
+
+                return Json(new { status = true, message = "ok" });        
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(new { status = true, message = ex.Message });
             }
+
         }
-
-        // GET: Servicio/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Servicio/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Servicio/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Servicio/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }
