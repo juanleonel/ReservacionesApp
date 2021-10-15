@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h1>Servicios</h1>
 
 <div class="container">
@@ -11,8 +12,13 @@
 
     @foreach (var item in Model)
     {
-        <div class="row" style="margin-bottom: 5px; margin-top: 5px;">
-            <div class="col-12" style="background:#d2cece;" onclick="selecciona(this);" data-id="@item.Identificador">
+        <div class="row normal" style="margin-bottom: 5px; margin-top: 5px;">
+            <div class="col-12 "  
+                 onclick="selecciona(this);" 
+                 data-id="@item.Identificador"
+                 data-total="@item.TotalMotociclistas"
+                 data-hora="@item.Hora"
+                 >
                 <p class="text-center">
                     <span class="hora">@item.Hora </span> <span class="motociclista">@item.Leyenda</span>  <span class="disponibles">@item.TotalMotociclistas</span>
                 </p>
@@ -28,9 +34,44 @@
              
         }
 
+        
+
         function selecciona(t) {
+
+            let result = t.dataset.ocupado == 1 ? false : true;
+
+            //console.log("Ocupado? ", result);
+            //return;
+            console.log(t.dataset);
+           
+
+            var url = '/servicio/Aplicado';
             
-            console.log(t);
+            var data = {
+                ServicioId: t.dataset.id,
+                Total: parseInt(t.dataset.total),
+                Hora: t.dataset.hora
+            };
+
+            fetch(url, {
+              method: 'POST', // or 'PUT'
+              body: JSON.stringify(data), // data can be `string` or {object}!
+              headers:{
+                'Content-Type': 'application/json'
+              }
+            }).then(
+                res => res.json()
+            )
+            .catch(error => console.error('Error:', error))
+                .then(function (r) {
+                    if (r.status) {
+                        location.reload(true);
+                    }
+                });
+
+
         }
+
+
     </script>
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservacionesApp.Data;
 
 namespace ReservacionesApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210624031917_delete-servicioAsignado")]
+    partial class deleteservicioAsignado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,9 +244,6 @@ namespace ReservacionesApp.Data.Migrations
                     b.Property<int>("ServicioId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("MotociclistaId");
 
                     b.HasIndex("ServicioId");
@@ -262,15 +261,14 @@ namespace ReservacionesApp.Data.Migrations
                     b.Property<DateTime>("FechaAlta")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Hora")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
-
                     b.Property<Guid>("Identificador")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Total")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ServicioId");
 

@@ -9,5 +9,7 @@ namespace ReservacionesApp.Models
     {
         public Guid ServicioId { get; set; }
         public bool Seleccionado { get; set; }
+        public int Total { get; set; }
+        public string Hora { get; set; }
     }
 }

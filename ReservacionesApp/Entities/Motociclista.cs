@@ -10,6 +10,7 @@ namespace ReservacionesApp.Entities
     public class Motociclista
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MotociclistaId { get; set; }
 
         [Required]
@@ -19,6 +20,7 @@ namespace ReservacionesApp.Entities
         [Column(TypeName = "datetime")]
         public DateTime FechaAlta { get; set; }
         public bool Ocupado { get; set; }
+        public Guid UsuarioId { get; set; }
 
         [ForeignKey("ServicioId")] 
         public int ServicioId { get; set; } 

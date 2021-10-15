@@ -13,7 +13,7 @@ namespace ReservacionesApp.DataAccess
     {
         private readonly IDbConnection _db;
         private readonly ApplicationDbContext _dbcontext;
-
+        
         public ServicioDA(ApplicationDbContext dbcontext, IDbConnection db) {
             _dbcontext = dbcontext;
             _db = db;
@@ -42,23 +42,70 @@ namespace ReservacionesApp.DataAccess
                     using (var transact = _context.Database.BeginTransaction())
                     {
 
-                        _context.Servicio.Add(new Servicio { 
-                            FechaAlta = DateTime.Now,
-                            Identificador = Guid.NewGuid(),
-                            
-                        });
-
+                                                
+                        _context.Motociclista.AddRange(servicio.Motociclistas);
                         _context.SaveChanges();
+                        
+
+                        //if (_servicio == null)
+                        //{
+                        //    servicio.Total--;
+                        //    var servicioAdd = _context.Servicio.Add(servicio).Entity;
+                        //    _context.SaveChanges();
+
+                        //    //List<Motociclista> motociclistas = new List<Motociclista>() {
+                        //    //    new Motociclista(){
+                        //    //        FechaAlta = DateTime.Now,
+                        //    //        Nombre = "Ramdom",
+                        //    //        Ocupado = true,
+                        //    //        ServicioId = servicioAdd.ServicioId,                                    
+                        //    //    }
+                        //    //};
+
+                        //    //_context.Motociclista.AddRange(motociclistas);
+                        //    //_context.SaveChanges();
+                        //}
+                        //else {
+                        //    if (servicio.UsuarioId == _servicio.UsuarioId)
+                        //    {
+
+                        //        _context.Servicio.Remove(_servicio);
+                        //        _context.SaveChanges();
+                        //    }
+                        //    else {
+                        //        _servicio.Total--;
+                        //        _context.Servicio.Update(_servicio);
+                        //        _context.SaveChanges();
+                        //    }
+                        //    //_servicio.Total = !_servicio.Ocupado ? _servicio.Total-1 : _servicio.Total+1;
+                        //    //_servicio.Ocupado = !_servicio.Ocupado;
+                        //    //List<Motociclista> motociclistas = new List<Motociclista>() {
+                        //    //    new Motociclista(){
+                        //    //        FechaAlta = DateTime.Now,
+                        //    //        Nombre = "Ramdom",
+                        //    //        Ocupado = true,
+                        //    //        ServicioId = _servicio.ServicioId
+                        //    //    }
+                        //    //};
+
+                        //    //_context.Motociclista.AddRange(motociclistas);
+                        //    //_context.SaveChanges();
+
+                        //}
+
+                       
+
                         transact.Commit();
+
+                        return true;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return false;
             }
-            throw new NotImplementedException();
+
         }
 
         public Servicio Edit(Servicio entity)
@@ -83,6 +130,11 @@ namespace ReservacionesApp.DataAccess
         public Servicio GetById(string id)
         {
             throw new NotImplementedException();
+        }
+
+        public Servicio GetByIdentificador(Guid Identificador)
+        {
+            return _dbcontext.Servicio.Where(x => x.Identificador == Identificador).FirstOrDefault();
         }
 
         public Servicio Remove(Servicio entity)

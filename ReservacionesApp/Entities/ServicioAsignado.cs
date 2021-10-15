@@ -10,7 +10,6 @@ namespace ReservacionesApp.Entities
     {
         [Key]
         public int ServicioAsignadoId { get; set; }
-
-        public ICollection<Servicio> Servicios { get; set; }
+ 
     }
 }

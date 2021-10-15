@@ -464,3 +464,4 @@ C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\bin\Debug\netcor
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Usuario\source\repos\ReservacionesApp\ReservacionesApp\obj\Debug\netcoreapp3.1\ReservacionesApp.csprojAssemblyReference.cache
